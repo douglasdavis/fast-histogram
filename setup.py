@@ -8,10 +8,10 @@ from setuptools.command.build_ext import build_ext
 
 
 class build_ext_with_numpy(build_ext):
-    def finalize_options(self):
-        build_ext.finalize_options(self)
+    def run(self):
         import numpy
         self.include_dirs.append(numpy.get_include())
+        build_ext.run(self)
 
 
 extensions = [Extension("fast_histogram._histogram_core",
